@@ -1,36 +1,28 @@
-import { useState } from 'react';
 import './App.css';
-import Customerlist from './components/Customerlist';
-import Traininglist from './components/Traininglist';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AppBar, Toolbar, Button, Typography } from "@mui/material";
+
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Link, Outlet } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+
 function App() {
 
   return (
-    <>
-    <Router>
-      <div>
-        <AppBar position="fixed">
-          <Toolbar>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Personal Trainer
-            </Typography>
-            <Button color="inherit" component={Link} to="/">
-              Customers
-            </Button>
-            <Button color="inherit" component={Link} to="/exercises">
-              Trainings
-            </Button>
-          </Toolbar>
-        </AppBar>
-        <Toolbar />
-        <Routes>
-          <Route path="/" element={<Customerlist />} />
-          <Route path="/exercises" element={<Traininglist />} />
-        </Routes>
-      </div>
-    </Router>
-    </>
+    <Container maxWidth="xl">
+    <CssBaseline />
+      <AppBar position="fixed" sx={{ backgroundColor: '#40A056' }}>
+        <Toolbar className="toolbar"
+        sx={{ justifyContent: 'space-between' }}>
+          <Typography variant="h6">Personal Trainer</Typography>
+          <Box component="nav" sx={{ display: 'flex', gap: 2 }}>
+            <Link to={"/"} style={{ color: "white", textDecoration: "none" }} className="nav-links">Customers</Link>
+            <Link to={"/exercises"} style={{ color: "white", textDecoration: "none" }} className="nav-links">Trainings</Link>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth="xl" sx={{ mt: 8 }} />
+      <Outlet />
+  </Container>
   )
 }
 
